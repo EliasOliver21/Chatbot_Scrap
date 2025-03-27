@@ -8,12 +8,15 @@ bot = telebot.TeleBot('7665199891:AAFfH_oEGDnCom1f1Grs4QmcUeImF9ORS6g')
 
 @bot.message_handler(['start','help'])
 def start(msg:telebot.types.Message):
-    ola = "Olá, Mundo!"
+    ola = "Digite algum comando:\n" \
+    "/start: Comandos.\n" \
+    "/vagas: Apresenta a quantidade de vagas disponíveis das disciplinas já adicionadas.\n" \
+    "/vagas_temp: Realiza uma consulta constante a cada 50 segundo e caso alguma das disciplinas possua vaga, retorna qual disciplina está disponível e se for várias retorna 'Múltiplas disciplinas disponíveis'."
     bot.reply_to(msg,ola)
 
 @bot.message_handler(['vagas'])
 def start(msg:telebot.types.Message):
-    resposta = scrapping_vagas2.verify_vacancy()
+    resposta = scrapping_vagas2.verify_vacancy_2()
     bot.reply_to(msg,resposta)
 
 executando = False
