@@ -11,7 +11,7 @@ def start(msg:telebot.types.Message):
     ola = "Digite algum comando:\n" \
     "/start: Comandos.\n" \
     "/vagas: Apresenta a quantidade de vagas disponíveis das disciplinas já adicionadas.\n" \
-    "/vagas_temp: Realiza uma consulta constante a cada 50 segundo e caso alguma das disciplinas possua vaga, retorna qual disciplina está disponível e se for várias retorna 'Múltiplas disciplinas disponíveis'."
+    "/vagas_temp: Realiza uma consulta constante a cada 50 segundo e caso alguma das disciplinas possua vaga, retorna qual disciplina está disponível e se for várias retorna 'Múltiplas disciplinas disponíveis.'"
     bot.reply_to(msg,ola)
 
 @bot.message_handler(['vagas'])
@@ -26,10 +26,12 @@ def verificacao(msg):
     while executando:
         try:
             resultado = scrapping_vagas2.verify_vacancy()  # Chama a função do outro script
-            if resultado == "Vagas Disponíveis":
+            if resultado != "":
                 bot.send_message(msg.chat.id, f"🔍 Resultado da verificação: {resultado}")
+                
         except Exception as e:
-            bot.send_message(msg.chat.id, f"❌ Ocorreu um erro: {str(e)}")
+            # bot.send_message(msg.chat.id, f"❌ Ocorreu um erro: {str(e)}")
+            continue
         
         time.sleep(50)  # Aguarda 50 segundos antes da próxima verificação
 

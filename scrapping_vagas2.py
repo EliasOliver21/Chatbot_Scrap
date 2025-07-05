@@ -63,15 +63,20 @@ def verify_vacancy():
     vaga_comp1_sergio = 100 - int(vaga_comp1_sergio.text.strip())
 
     # ##Localiza elemento da qtde de vagas ocupadas
-    vaga_tppe_lanna = driver.find_element(By.XPATH, '//*[@id="turmasAbertas"]/table/tbody/tr[292]/td[7]')
+    vaga_tppe_lanna = driver.find_element(By.XPATH, '//*[@id="turmasAbertas"]/table/tbody/tr[294]/td[7]')
     # #Verífica a qtde de vagas disponíveis
     vaga_tppe_lanna = 80 - int(vaga_tppe_lanna.text.strip())
     
     #Coleta o elemento desejado na página
-    vaga_fse_renato = driver.find_element(By.XPATH, '//*[@id="turmasAbertas"]/table/tbody/tr[158]/td[7]')
+    vaga_fse_renato = driver.find_element(By.XPATH, '//*[@id="turmasAbertas"]/table/tbody/tr[160]/td[7]')
 
     # Pega o valor de vagas ocupadas
     vaga_fse_renato = 80 - int(vaga_fse_renato.text.strip())
+
+     #Coleta o elemento desejado na página
+    vaga_bancos_Mauricio = driver.find_element(By.XPATH, '//*[@id="turmasAbertas"]/table/tbody/tr[182]/td[7]')
+
+    vaga_bancos_Mauricio = 80 - int(vaga_bancos_Mauricio.text.strip())
 
     driver.quit()
 
@@ -83,9 +88,9 @@ def verify_vacancy():
     elif( vaga_fse_renato >0):
         return'FSE Disponível'
     elif((vaga_tppe_lanna > 0 and vaga_comp1_sergio > 0) or ( vaga_comp1_sergio > 0)) or ( vaga_fse_renato >0):
-        return 'Alguma vaga disponível, verifique!!!'
+        return 'Algumas vagas disponívesis, verifique!!!'
     else:
-        return 'Vagas Indisponíveis'
+        return ''
     
 def verify_vacancy_2():
 
@@ -127,14 +132,19 @@ def verify_vacancy_2():
     vaga_comp1_sergio = 100 - int(vaga_comp1_sergio.text.strip())
 
     # ##Localiza elemento da qtde de vagas ocupadas
-    vaga_tppe_lanna = driver.find_element(By.XPATH, '//*[@id="turmasAbertas"]/table/tbody/tr[292]/td[7]')
+    vaga_tppe_lanna = driver.find_element(By.XPATH, '//*[@id="turmasAbertas"]/table/tbody/tr[294]/td[7]')
     # #Verífica a qtde de vagas disponíveis
     vaga_tppe_lanna = 80 - int(vaga_tppe_lanna.text.strip())
 
-    vaga_fse_renato = driver.find_element(By.XPATH, '//*[@id="turmasAbertas"]/table/tbody/tr[158]/td[7]')
+    vaga_fse_renato = driver.find_element(By.XPATH, '//*[@id="turmasAbertas"]/table/tbody/tr[160]/td[7]')
 
     # Pega o valor de vagas ocupadas
     vaga_fse_renato = 80 - int(vaga_fse_renato.text.strip())
+
+     #Coleta o elemento desejado na página
+    vaga_bancos_Mauricio = driver.find_element(By.XPATH, '//*[@id="turmasAbertas"]/table/tbody/tr[182]/td[7]')
+
+    vaga_bancos_Mauricio = 80 - int(vaga_bancos_Mauricio.text.strip())
 
     #Fecha o navegador
     driver.quit()
@@ -142,7 +152,9 @@ def verify_vacancy_2():
     resultado = "" \
     f" FGA0003 - COMPILADORES 1 -- Sérgio -- Vagas: {vaga_comp1_sergio}\n\n" \
     f" FGA0242 - TÉCNICAS DE PROGRAMAÇÃO EM PLATAFORMAS EMERGENTES -- Lanna -- Vagas: {vaga_tppe_lanna}\n\n " \
-    f"FGA0109 - FUNDAMENTOS DE SISTEMAS EMBARCADOS -- Renato Coral -- Vagas: {vaga_fse_renato}\n\n"
+    f" FGA0109 - FUNDAMENTOS DE SISTEMAS EMBARCADOS -- Renato Coral -- Vagas: {vaga_fse_renato}\n\n"\
+    f"FGA0137 - SISTEMAS DE BANCO DE DADOS 1 -- Mauricio -- Vagas: {vaga_bancos_Mauricio}\n\n "
+
     
 
     return resultado
