@@ -1,10 +1,12 @@
 import telebot
-import scrapping_vagas2
+import Scrap_Vagas_Turmas
 import time
 import threading
 
 
 bot = telebot.TeleBot('7665199891:AAFfH_oEGDnCom1f1Grs4QmcUeImF9ORS6g')
+
+bot.set_webhook()
 
 @bot.message_handler(['start','help'])
 def start(msg:telebot.types.Message):
@@ -30,6 +32,7 @@ def verificacao(msg):
                 bot.send_message(msg.chat.id, f"🔍 Resultado da verificação: {resultado}")
         except Exception as e:
             bot.send_message(msg.chat.id, f"❌ Ocorreu um erro: {str(e)}")
+            continue
         
         time.sleep(50)  # Aguarda 50 segundos antes da próxima verificação
 
@@ -50,8 +53,3 @@ def stop(msg: telebot.types.Message):
     bot.reply_to(msg, "⏹ A verificação de vagas foi interrompida.")
 
 bot.infinity_polling()
-
-
-bot.infinity_polling()
-
-
