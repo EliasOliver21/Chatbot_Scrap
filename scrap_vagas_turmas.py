@@ -50,7 +50,7 @@ def buscar_vagas_para_disciplina(driver, nome_disciplina, nome_professor):
 
             # nome da disciplina
             if termo_disciplina in texto_disciplina:
-                print(f"Sucesso disciplina: {termo_disciplina}")
+                # print(f"Sucesso disciplina: {termo_disciplina}")
                 
                 # Verifica se existe uma próxima linha
                 if index + 1 < len(linhas):
@@ -76,7 +76,7 @@ def buscar_vagas_para_disciplina(driver, nome_disciplina, nome_professor):
 
                                 if vagas_disponiveis > 0 :
 
-                                    return f"✅ {nome_disciplina.upper()} ({nome_professor}): {vagas_disponiveis} vagas disponíveis ({vagas_ocupadas}/{total_vagas})"
+                                    return f"✅ {nome_disciplina.upper()} ({nome_professor}): {vagas_disponiveis} vagas disponíveis ({vagas_ocupadas}/{total_vagas})\n\n"
                                 else:
                                     return f"❌ {nome_disciplina.upper()} ({nome_professor}): {vagas_disponiveis} vagas disponíveis ({vagas_ocupadas}/{total_vagas})"
                             
@@ -137,7 +137,7 @@ def verificar_vagas_unb():
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.ID, 'turmasAbertas'))
         )
-        print("Tabela carregada. Buscando disciplinas...")
+        # print("Tabela carregada. Buscando disciplinas...")
 
         # --- LISTA DE DISCIPLINAS PARA VERIFICAR ---
         # Adicione quantas disciplinas quiser nesta lista de tuplas (disciplina, professor)
@@ -148,6 +148,8 @@ def verificar_vagas_unb():
             ("TÉCNICAS DE PROGRAMAÇÃO EM PLATAFORMAS EMERGENTES", "ANDRE LUIZ"),
             ("MÉTODOS NUMÉRICOS PARA ENGENHARIA", "RODRIGO ANDRES"),
             ("PARADIGMAS DE PROGRAMAÇÃO", "EDSON ALVES"),
+            # ("ESTRUTURAS DE DADOS PARA COMPETIÇÕES", "EDSON ALVES")
+            
 
         ]
 
@@ -155,10 +157,9 @@ def verificar_vagas_unb():
         resultados = []
         for disciplina, professor in disciplinas_a_verificar:
             resultado = buscar_vagas_para_disciplina(driver, disciplina, professor)
-            print(resultado)
             resultados.append(resultado)
         
-        return "\n".join(resultados)
+        return resultados
 
     finally:
         driver.quit()
@@ -211,7 +212,6 @@ def verificar_vaga(disciplina, professor):
 
         # --- Etapa 3: Iterar e imprimir resultados ---
         resultado = buscar_vagas_para_disciplina(driver, disciplina, professor)
-        print(resultado)
 
         return resultado
 

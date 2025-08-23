@@ -1,1 +1,3 @@
-# Busca de disciplinas ofertadas e integração com chat bot
+# Bot Avisa
+
+O Bot Avisa é um sistema de chat bot para envio de avisos no telegram, utilizando a (API do telegram bot)[https://core.telegram.org/bots/tutorial]. O bot realiza tarefas, de acordo com os comandos definidos. O sistema bot avisa, realiza a raspagem de dados dentro do site (público da unb)[https://sigaa.unb.br/sigaa/public/turmas/listar.jsf], especificamente na página referente a oferta de turmas para o campus do GAMA. Em resumo, o Bot Avisa tem o objetivo de enviar um aviso quando uma ou umas das disciplinas definidas possuirem vagas, no período da matrícula extraordinária.

@@ -3,7 +3,9 @@ import scrap_vagas_turmas
 import time
 import threading
 
-bot = telebot.TeleBot('7665199891:AAFfH_oEGDnCom1f1Grs4QmcUeImF9ORS6g')
+token = open('token.txt')
+
+bot = telebot.TeleBot(token.read())
 
 bot.set_webhook()
 
@@ -31,7 +33,6 @@ def verificacao(msg):
         try:
             resultado = scrap_vagas_turmas.verificar_vagas_unb() # Chama a função do outro script
             if resultado:
-                print(resultado)
                 bot.send_message(msg.chat.id, f"🔍 Resultado da verificação:\n {resultado}")
         except Exception as e:
             bot.send_message(msg.chat.id, f"❌ Ocorreu um erro: {str(e)}")
