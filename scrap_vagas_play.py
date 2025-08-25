@@ -21,30 +21,40 @@ def buscar_vagas_para_disciplina(page, nome_disciplina, nome_professor):
             if termo_disciplina in texto_disciplina:
 
                 # print(f"Certo disciplina: \n {texto_disciplina}")
+
+                for i in range(3):
                 
-                if index + 1 < len(linhas):
-                    linha_professor_el = linhas[index + 1]
-                    texto_professor = preparar_para_comparacao(linha_professor_el.inner_text())
+                    if index + i < len(linhas):
+                        linha_professor_el = linhas[index + i]
+                        texto_professor = preparar_para_comparacao(linha_professor_el.inner_text())
 
-                    if termo_professor in texto_professor:
+                        if termo_professor in texto_professor:
 
-                        # print(f"Certo Professor: \n {texto_professor}")
-                        # Encontrou a combinação! Extrai os dados da linha da disciplina.
-                        celulas = linha_professor_el.locator('td').all()
-                        
-                        if celulas:
-                            vagas_ofertadas_texto = linha_professor_el.locator('td').nth(5).inner_text()
+                            # print(f"Certo Professor: \n {texto_professor}")
+                            # Encontrou a combinação! Extrai os dados da linha da disciplina.
+                            celulas = linha_professor_el.locator('td').all()
                             
-                            vagas_ocupadas = linha_professor_el.locator('td').nth(6).inner_text()
-                            
-                            #Contagem de vagas
+                            if celulas:
+                                vagas_ofertadas_texto = linha_professor_el.locator('td').nth(5).inner_text()
+                                
+                                vagas_ocupadas_texto = linha_professor_el.locator('td').nth(6).inner_text()
+                                
+                                #Contagem de vagas
 
-                            vagas_disponiveis = int(vagas_ofertadas_texto.strip()) - int(vagas_ocupadas.strip())
+                                vagas_ofertadas = int(vagas_ofertadas_texto.strip())
 
-                            if vagas_disponiveis:
-                                return f"✅ {nome_disciplina.upper()}: {vagas_disponiveis} vagas disponíveis ({vagas_ocupadas}/{vagas_disponiveis})"
-                            else:
-                                continue
+                                vagas_ocupadas = int(vagas_ocupadas_texto.strip())
+
+                                vagas_disponiveis = vagas_ofertadas - vagas_ocupadas
+
+                                # print(f"{nome_disciplina.upper()} ({nome_professor}): {vagas_disponiveis} vagas disponíveis ({vagas_ocupadas}/{vagas_disponiveis})")
+
+                                if vagas_disponiveis > 0:
+                                    return f"✅ {nome_disciplina.upper()} Professor(a):{termo_professor.upper()}: {vagas_disponiveis} vagas disponíveis ({vagas_ocupadas}/{vagas_ofertadas})"
+                                else:
+                                    None
+                                    # return f"❌​{nome_disciplina.upper()} Professor(a):{termo_professor.upper()}: {vagas_disponiveis} vagas disponíveis ({vagas_ocupadas}/{vagas_ofertadas})"
+                                #     continue
 
                         # Se não retornou, continua procurando (pode haver outra turma com mesmo nome)
         
@@ -76,12 +86,9 @@ def verificar_vagas_unb():
         page = browser.new_page()
 
         try:
-            # print("Navegador iniciado. Acessando o site...")
             page.goto("https://sigaa.unb.br/sigaa/public/turmas/listar.jsf", timeout=60000)
 
-            # --- DADOS DA BUSCA ---
-            # Idealmente, isso viria de um arquivo de config ou do seu bot
-
+            # Turmas no arquivo json
             disciplinas_a_verificar = converter_turmas('vagas.json')
             resultados_finais = []
             departamento_atual = None
@@ -89,10 +96,9 @@ def verificar_vagas_unb():
             for busca in disciplinas_a_verificar:
                 if busca["departamento"] != departamento_atual:
                     departamento_atual = busca["departamento"]
-                    # print(f"Filtrando por departamento: {departamento_atual}...")
                     
                     page.locator('select[name="formTurma:inputNivel"]').select_option(label="GRADUAÇÃO")
-                    # O Playwright espera automaticamente o elemento estar pronto
+                    # espera o elemento estar pronto
                     page.locator('select[name="formTurma:inputDepto"]').select_option(label=departamento_atual)
                     page.locator('input[name="formTurma:j_id_jsp_1370969402_11"]').click()
                     
@@ -100,12 +106,9 @@ def verificar_vagas_unb():
                     tabela = page.locator('#turmasAbertas')
                     
                     expect(tabela).to_be_visible(timeout=20000)
-                    # print("Filtro aplicado. Tabela carregada.")
 
-                # Com a página filtrada, busca a disciplina
+                # busca a disciplina
                 resultado = buscar_vagas_para_disciplina(page, busca["disciplina"], busca["professor"])
-
-                # print(resultado)
                 if resultado:
                     resultados_finais.append(resultado)
 
@@ -115,19 +118,7 @@ def verificar_vagas_unb():
                 return None
 
         except Exception as e:
-            # print(f"Ocorreu um erro geral no scraping: {e}")
-            # Tira um screenshot para ajudar a depurar o erro
             page.screenshot(path='erro_playwright.png')
             return f"Erro ao executar o scraping: {e}"
         finally:
-            # print("Fechando navegador.")
             browser.close()
-
-# --- Para testar o script diretamente ---
-if __name__ == "__main__":
-    resultado_geral = verificar_vagas_unb()
-    if resultado_geral:
-        print("\n--- VAGAS ENCONTRADAS ---")
-        print(resultado_geral)
-    else:
-        print("\nNenhuma vaga encontrada para as disciplinas monitoradas.")

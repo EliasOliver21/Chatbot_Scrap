@@ -1,5 +1,5 @@
 import telebot
-import scrap_vagas_turmas
+import scrap_vagas_play
 import time
 import threading
 
@@ -22,7 +22,7 @@ def start(msg:telebot.types.Message):
 
 @bot.message_handler(['vagas'])
 def start(msg:telebot.types.Message):
-    resposta = scrap_vagas_turmas.verificar_vagas_unb()
+    resposta = scrap_vagas_play.verificar_vagas_unb()
     bot.reply_to(msg,resposta)
 
 executando = False
@@ -31,9 +31,9 @@ def verificacao(msg):
     global executando
     while executando:
         try:
-            resultado = scrap_vagas_turmas.verificar_vagas_unb() # Chama a função do outro script
+            resultado = scrap_vagas_play.verificar_vagas_unb() # Chama a função do outro script
 
-            print(resultado)
+            # print(resultado)
             if resultado:
                 bot.send_message(msg.chat.id, f"🔍 Resultado da verificação:\n {resultado}")
         except Exception as e:
@@ -57,18 +57,5 @@ def stop(msg: telebot.types.Message):
     global executando
     executando = False
     bot.reply_to(msg, "⏹ A verificação de vagas foi interrompida.")
-
-@bot.message_handler(['vaga'])
-def handle_text_messages(message):
-
-    try:
-        user_input = message.text.replace('/vaga','').strip()
-        disciplina, professor = user_input.split("-")
-        resultado = scrap_vagas_turmas.verificar_vaga(disciplina, professor)
-        bot.send_message(message.chat.id, f"{resultado}")
-
-    except Exception as e:
-        bot.send_message(message.chat.id, f"Formato Inválido.\n\n Execute o comando com o seguinte formato:\n\n  Exemplo: `/vaga Compiladores 1 - Sergio `\n\n Não esqueça dos acentos!!!")
-
 
 bot.infinity_polling()
