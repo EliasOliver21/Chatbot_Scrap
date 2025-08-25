@@ -1,0 +1,37 @@
+[
+    {
+        "disciplina": "TÓPICOS ESPECIAIS DE ENGENHARIA DE SOFTWARE", 
+        "professor": "CARLA", 
+        "departamento": "CAMPUS UNB GAMA: FACULDADE DE CIÊNCIAS E TECNOLOGIAS EM ENGENHARIA - BRASÍLIA"
+    },
+    {
+        "disciplina": "ESTRUTURAS DE DADOS 2", 
+        "professor": "MAURICIO", 
+        "departamento": "CAMPUS UNB GAMA: FACULDADE DE CIÊNCIAS E TECNOLOGIAS EM ENGENHARIA - BRASÍLIA"
+    },
+    {
+        "disciplina": "FUNDAMENTOS DE SISTEMAS EMBARCADOS", 
+        "professor": "RENATO", 
+        "departamento": "CAMPUS UNB GAMA: FACULDADE DE CIÊNCIAS E TECNOLOGIAS EM ENGENHARIA - BRASÍLIA"
+    },
+    {
+        "disciplina": "TÉCNICAS DE PROGRAMAÇÃO EM PLATAFORMAS EMERGENTES", 
+        "professor": "ANDRE LUIZ", 
+        "departamento": "CAMPUS UNB GAMA: FACULDADE DE CIÊNCIAS E TECNOLOGIAS EM ENGENHARIA - BRASÍLIA"
+    },
+    {
+        "disciplina": "MÉTODOS NUMÉRICOS PARA ENGENHARIA", 
+        "professor": "RODRIGO ANDRES", 
+        "departamento": "CAMPUS UNB GAMA: FACULDADE DE CIÊNCIAS E TECNOLOGIAS EM ENGENHARIA - BRASÍLIA"
+    },
+    {
+        "disciplina": "PARADIGMAS DE PROGRAMAÇÃO", 
+        "professor": "EDSON ALVES", 
+        "departamento": "CAMPUS UNB GAMA: FACULDADE DE CIÊNCIAS E TECNOLOGIAS EM ENGENHARIA - BRASÍLIA"
+    },
+    {
+        "disciplina": "ESTRUTURAS DE DADOS PARA COMPETIÇÕES", 
+        "professor": "EDSON ALVES", 
+        "departamento": "CAMPUS UNB GAMA: FACULDADE DE CIÊNCIAS E TECNOLOGIAS EM ENGENHARIA - BRASÍLIA"
+    }
+]
