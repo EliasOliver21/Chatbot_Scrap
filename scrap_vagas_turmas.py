@@ -76,9 +76,10 @@ def buscar_vagas_para_disciplina(driver, nome_disciplina, nome_professor):
 
                                 if vagas_disponiveis > 0 :
 
-                                    return f"✅ {nome_disciplina.upper()} ({nome_professor}): {vagas_disponiveis} vagas disponíveis ({vagas_ocupadas}/{total_vagas})\n\n"
+                                    return f"✅ {nome_disciplina.upper()} ({nome_professor}): {vagas_disponiveis} vagas disponíveis ({vagas_ocupadas}/{total_vagas})"
                                 else:
-                                    return f"❌ {nome_disciplina.upper()} ({nome_professor}): {vagas_disponiveis} vagas disponíveis ({vagas_ocupadas}/{total_vagas})"
+                                    return None
+                                    # return f"❌ {nome_disciplina.upper()} ({nome_professor}): {vagas_disponiveis} vagas disponíveis ({vagas_ocupadas}/{total_vagas})"
                             
                             else:
                                 # Pula para a próxima linha, se não encontrar a coluna
@@ -148,7 +149,7 @@ def verificar_vagas_unb():
             ("TÉCNICAS DE PROGRAMAÇÃO EM PLATAFORMAS EMERGENTES", "ANDRE LUIZ"),
             ("MÉTODOS NUMÉRICOS PARA ENGENHARIA", "RODRIGO ANDRES"),
             ("PARADIGMAS DE PROGRAMAÇÃO", "EDSON ALVES"),
-            # ("ESTRUTURAS DE DADOS PARA COMPETIÇÕES", "EDSON ALVES")
+            ("ESTRUTURAS DE DADOS PARA COMPETIÇÕES", "EDSON ALVES")
             
 
         ]
@@ -157,7 +158,8 @@ def verificar_vagas_unb():
         resultados = []
         for disciplina, professor in disciplinas_a_verificar:
             resultado = buscar_vagas_para_disciplina(driver, disciplina, professor)
-            resultados.append(resultado)
+            if resultado != None:
+                resultados.append(resultado)
         
         return resultados
 

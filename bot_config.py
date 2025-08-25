@@ -32,6 +32,8 @@ def verificacao(msg):
     while executando:
         try:
             resultado = scrap_vagas_turmas.verificar_vagas_unb() # Chama a função do outro script
+
+            print(resultado)
             if resultado:
                 bot.send_message(msg.chat.id, f"🔍 Resultado da verificação:\n {resultado}")
         except Exception as e:
