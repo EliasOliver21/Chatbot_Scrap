@@ -40,7 +40,7 @@ def verificacao(msg):
             bot.send_message(msg.chat.id, f"❌ Ocorreu um erro: {str(e)}")
             continue
         
-        time.sleep(50)  # Aguarda 50 segundos antes da próxima verificação
+        time.sleep(180)  # Aguarda 50 segundos antes da próxima verificação
 
 @bot.message_handler(commands=['vagas_temp'])
 def start(msg: telebot.types.Message):
