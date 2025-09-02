@@ -46,8 +46,9 @@ def buscar_vagas_para_disciplina(page, nome_disciplina, nome_professor):
                                 vagas_ocupadas = int(vagas_ocupadas_texto.strip())
 
                                 vagas_disponiveis = vagas_ofertadas - vagas_ocupadas
-
-                                # print(f"{nome_disciplina.upper()} ({nome_professor}): {vagas_disponiveis} vagas disponíveis ({vagas_ocupadas}/{vagas_disponiveis})")
+                                
+                                # Mostra todas as diciplinas e as vagas disponíveis que passaram pela combinação nome de componente e professor
+                                # print(f"{nome_disciplina.upper()} ({nome_professor}): {vagas_disponiveis} vagas disponíveis ({vagas_ocupadas}/{vagas_ofertadas})")
 
                                 if vagas_disponiveis > 0 and vagas_disponiveis < 3:
                                     # print(f"✅ {nome_disciplina.upper()} Professor(a):{termo_professor.upper()}: {vagas_disponiveis} vagas disponíveis ({vagas_ocupadas}/{vagas_ofertadas})")
