@@ -2,3 +2,5 @@ token.txt
 /__pycache__
 /venv
 scrap_vagas_turmas.py
+vagas.json
+tokem.txt

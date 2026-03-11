@@ -1,7 +1,23 @@
 [
     {
-        "disciplina": "NOME_DISCIPLINA", 
-        "professor": "NOME_PROFESSOR", 
+        "disciplina": "MÉTODOS NUMÉRICOS PARA ENGENHARIA",
+        "professor": "RODRIGO ANDRES MIRANDA CERDA",
+        "departamento": "CAMPUS UNB GAMA: FACULDADE DE CIÊNCIAS E TECNOLOGIAS EM ENGENHARIA - BRASÍLIA"
+    },
+    {
+        "disciplina": "ENGENHARIA DE SEGURANÇA DO TRABALHO",
+        "professor": "MARIA ALZIRA",
+        "departamento": "CAMPUS UNB GAMA: FACULDADE DE CIÊNCIAS E TECNOLOGIAS EM ENGENHARIA - BRASÍLIA"
+    },
+    {
+        "disciplina": "ENGENHARIA DE PRODUTO DE SOFTWARE",
+        "professor": "RICARDO MATOS CHAIM",
+        "departamento": "CAMPUS UNB GAMA: FACULDADE DE CIÊNCIAS E TECNOLOGIAS EM ENGENHARIA - BRASÍLIA"
+    },
+    {
+        "disciplina": "GERÊNCIA DE CONFIGURAÇÃO DE SOFTWARE",
+        "professor": "CARLA SILVA",
         "departamento": "CAMPUS UNB GAMA: FACULDADE DE CIÊNCIAS E TECNOLOGIAS EM ENGENHARIA - BRASÍLIA"
     }
+    
 ]
